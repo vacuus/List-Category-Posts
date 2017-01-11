@@ -29,24 +29,25 @@ USA
 */
 
 /**
-* The format for templates changed since version 0.17.  Since this
-* code is included inside CatListDisplayer, $this refers to the
-* instance of CatListDisplayer that called this file.
-*/
+ * The format for templates changed since version 0.17.  Since this
+ * code is included inside CatListDisplayer, $this refers to the
+ * instance of CatListDisplayer that called this file.
+ */
 
 /* This is the string which will gather all the information.*/
 $lcp_display_output = '';
 
 // Show category link:
-$lcp_display_output .= $this->get_category_link('strong');
+$lcp_display_output .= $this->get_category_link( 'strong' );
 
 // Show the conditional title:
 $lcp_display_output .= $this->get_conditional_title();
 
-//Add 'starting' tag. Here, I'm using an unordered list (ul) as an example:
+// Add 'starting' tag. Here, I'm using an unordered list (ul) as an example:
 $lcp_display_output .= '<ul class="lcp_catlist">';
 
-/* Posts Loop
+/*
+ Posts Loop
  *
  * The code here will be executed for every post in the category.  As
  * you can see, the different options are being called from functions
@@ -58,50 +59,50 @@ $lcp_display_output .= '<ul class="lcp_catlist">';
  * to display. You can also assign a specific CSS class to each field.
 */
 global $post;
-while ( have_posts() ):
-  the_post();
+while ( have_posts() ) :
+	the_post();
 
-  //Start a List Item for each post:
-  $lcp_display_output .= "<li>";
+	// Start a List Item for each post:
+	$lcp_display_output .= '<li>';
 
-  //Show the title and link to the post:
-  $lcp_display_output .= $this->get_post_title($post, 'h3', 'lcp_post');
+	// Show the title and link to the post:
+	$lcp_display_output .= $this->get_post_title( $post, 'h3', 'lcp_post' );
 
-  //Show comments:
-  $lcp_display_output .= $this->get_comments($post);
+	// Show comments:
+	$lcp_display_output .= $this->get_comments( $post );
 
-  //Show date:
-  $lcp_display_output .= ' ' . $this->get_date($post);
+	// Show date:
+	$lcp_display_output .= ' ' . $this->get_date( $post );
 
-  //Show date modified:
-  $lcp_display_output .= ' ' . $this->get_modified_date($post);
+	// Show date modified:
+	$lcp_display_output .= ' ' . $this->get_modified_date( $post );
 
-  //Show author
-  $lcp_display_output .= $this->get_author($post);
+	// Show author
+	$lcp_display_output .= $this->get_author( $post );
 
-  //Custom fields:
-  $lcp_display_output .= $this->get_custom_fields($post);
+	// Custom fields:
+	$lcp_display_output .= $this->get_custom_fields( $post );
 
-  //Post Thumbnail
-  $lcp_display_output .= $this->get_thumbnail($post);
+	// Post Thumbnail
+	$lcp_display_output .= $this->get_thumbnail( $post );
 
-  /**
-   * Post content - Example of how to use tag and class parameters:
-   * This will produce:<p class="lcp_content">The content</p>
-   */
-  $lcp_display_output .= $this->get_content($post, 'p', 'lcp_content');
+	/**
+	* Post content - Example of how to use tag and class parameters:
+	* This will produce:<p class="lcp_content">The content</p>
+	*/
+	$lcp_display_output .= $this->get_content( $post, 'p', 'lcp_content' );
 
-  /**
-   * Post content - Example of how to use tag and class parameters:
-   * This will produce:<div class="lcp_excerpt">The content</div>
-   */
-  $lcp_display_output .= $this->get_excerpt($post, 'div', 'lcp_excerpt');
+	/**
+	* Post content - Example of how to use tag and class parameters:
+	* This will produce:<div class="lcp_excerpt">The content</div>
+	*/
+	$lcp_display_output .= $this->get_excerpt( $post, 'div', 'lcp_excerpt' );
 
-  // Get Posts "More" link:
-  $lcp_display_output .= $this->get_posts_morelink($post);
+	// Get Posts "More" link:
+	$lcp_display_output .= $this->get_posts_morelink( $post );
 
-  //Close li tag
-  $lcp_display_output .= '</li>';
+	// Close li tag
+	$lcp_display_output .= '</li>';
 endwhile;
 
 // Close the wrapper I opened at the beginning:
@@ -113,7 +114,7 @@ $lcp_display_output .= $this->get_morelink();
 // Get category posts count
 $lcp_display_output .= $this->get_category_count();
 
-//Pagination
+// Pagination
 $lcp_display_output .= $this->get_pagination();
 
 $this->lcp_output = $lcp_display_output;

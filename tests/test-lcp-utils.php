@@ -16,7 +16,7 @@ class LcpUtils_Tests extends WP_UnitTestCase {
 			1,
 			-1,
 			'some string',
-			' another string with extra spaces '
+			' another string with extra spaces ',
 		);
 		$utils = new LcpUtils( $values );
 
